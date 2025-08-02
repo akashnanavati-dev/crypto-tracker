@@ -1,0 +1,9 @@
+{
+  "short_name": "Crypto Tracker",
+  "name": "Crypto Tracker - Real-time Dashboard",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3b82f6",
+  "background_color": "#0f172a",
+  "description": "Real-time cryptocurrency tracking dashboard"
+}

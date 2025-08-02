@@ -1,0 +1,164 @@
+/* src/components/CoinCard/CoinCard.module.css */
+.coinCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.coinCard:hover {
+  background: var(--card-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px var(--shadow);
+}
+
+.coinCard.selected {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.rank {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.watchlistBtn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.watchlistBtn:hover {
+  color: var(--warning);
+  transform: scale(1.2);
+}
+
+.watchlistBtn.inWatchlist {
+  color: var(--warning);
+}
+
+.coinInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.coinImage {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.coinDetails {
+  flex: 1;
+}
+
+.coinName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.coinSymbol {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.priceSection {
+  margin-bottom: 1.5rem;
+}
+
+.currentPrice {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.priceChanges {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.priceChange {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: var(--bg-tertiary);
+}
+
+.priceChange.positive {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--success);
+}
+
+.priceChange.negative {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+}
+
+.marketData {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.dataItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dataLabel {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.dataValue {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.clickIndicator {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 1rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.coinCard:hover .clickIndicator {
+  opacity: 1;
+}
