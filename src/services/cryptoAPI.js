@@ -3,11 +3,8 @@
 // Get the API key from the .env file
 const API_KEY = process.env.REACT_APP_COINGECKO_API_KEY;
 
-// This constant correctly uses the proxy for development
-// and the full URL for production builds
-const API_BASE_URL = process.env.NODE_ENV === 'development'
-  ? '' // Use proxy in development
-  : 'https://api.coingecko.com/api/v3';
+// API_BASE_URL is now simplified as we'll use a specific proxy path in development
+const API_BASE_URL = '/api';
 
 /**
  * Generic API request handler with error handling
@@ -16,17 +13,22 @@ const API_BASE_URL = process.env.NODE_ENV === 'development'
  * @returns {Promise<Object>} API response data
  */
 const apiRequest = async (endpoint, options = {}) => {
-  // Add the API key to the endpoint as a query parameter
-  const keyParam = `x_cg_demo_api_key=${API_KEY}`;
-  const separator = endpoint.includes('?') ? '&' : '?';
-  const url = `${API_BASE_URL}${endpoint}${separator}${keyParam}`;
+  // Construct the URL using the proxy base path
+  const url = `${API_BASE_URL}${endpoint}`;
   
+  // Create a headers object and add the API key and User-Agent
+  const headers = {
+    'Content-Type': 'application/json',
+    'x-cg-demo-api-key': API_KEY,
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+    ...options.headers,
+  };
+
+  console.log('Sending API Request:', { url, headers });
+
   try {
     const response = await fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
+      headers: headers,
       ...options,
     });
 
@@ -58,7 +60,7 @@ export const getCryptoMarkets = async (params = {}) => {
     ...params,
   });
 
-  return apiRequest(`/coins/markets?${queryParams}`);
+  return apiRequest(`/coins/markets?${queryParams.toString()}`);
 };
 
 /**

@@ -21,6 +21,7 @@ export const useCryptoData = ({
   const fetchData = useCallback(async () => {
     try {
       setError(null);
+      setLoading(true); // Added this line to show loading on refetch
       let result;
 
       switch (endpoint) {
@@ -41,7 +42,7 @@ export const useCryptoData = ({
     } finally {
       setLoading(false);
     }
-  }, [endpoint, params]); // <-- Fixed dependency array
+  }, [endpoint, params.id, JSON.stringify(params)]); // Improved dependency array
 
   // Initial fetch
   useEffect(() => {
